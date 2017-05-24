@@ -1,0 +1,16 @@
+{
+  "static": {
+    "urls": {
+      "angular-task.dev/polyfills.d6ace064705e27ed776a.bundle.js": "5620e02c5443a4ca0313d99a8a9cf18fdc781087",
+      "angular-task.dev/main.b1d3db0fc01794fffba0.bundle.js": "6e92d2d93490d03841be0aa2ee044dd78d8667bd",
+      "angular-task.dev/sw-register.b73048fe3d9f8a1e7ae5.bundle.js": "a98270c864fc34e37b1d992bfe5994323558c2f8",
+      "angular-task.dev/vendor.3238ecd50ec3202a827c.bundle.js": "2cbc8c930c03f349bcd4f7ec30edd65453691ae2",
+      "angular-task.dev/inline.308d4459d130af8f7c38.bundle.js": "d3ad9626743c0672406599b2cf3d38e6665dcccd",
+      "angular-task.dev/styles.ef9a26d4778a811fba16.bundle.css": "941e975e2f0c2d08d1803d5f8e6297f6800706ec",
+      "angular-task.dev/favicon.ico": "84161b857f5c547e3699ddfbffc6d8d737542e01",
+      "angular-task.dev/manifest.json": "30cf267fbf3a812d5b251be641fdf64409c45b48",
+      "angular-task.dev/index.html": "2b36436a270dd33c2cf308f1415217687f970852"
+    },
+    "_generatedFromWebpack": true
+  }
+}
