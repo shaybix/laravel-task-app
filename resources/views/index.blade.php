@@ -5,7 +5,7 @@
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#f27b00">
   <title>AngularTaskApp</title>
-  <base href="angular-task.dev">
+  <base href="https://angular.shaybix.com">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
   <meta name="viewport" content="width=device-width, initial-scale=1">
