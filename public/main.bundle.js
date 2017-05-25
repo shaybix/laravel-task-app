@@ -97,7 +97,7 @@ exports = module.exports = __webpack_require__(10)(false);
 
 
 // module
-exports.push([module.i, "/*.filler {\r\n    flex: 1 1 auto;\r\n}*/\r\n\r\n\r\nmd-icon {\r\n    cursor: pointer;\r\n}\r\n\r\n\r\n/deep/ md-card .md-grid-tile-buttons .mat-figure {\r\n    display: -webkit-box;\r\n    display: -ms-flexbox;\r\n    display: flex;\r\n    -webkit-box-pack: end !important;\r\n        -ms-flex-pack: end !important;\r\n            justify-content: flex-end !important;\r\n}\r\n\r\n\r\n/deep/ md-card .md-grid-tile-task .mat-figure {\r\n    display: -webkit-box;\r\n    display: -ms-flexbox;\r\n    display: flex;\r\n    -webkit-box-pack: start !important;\r\n        -ms-flex-pack: start !important;\r\n            justify-content: flex-start !important;\r\n}\r\n", ""]);
+exports.push([module.i, "/*.filler {\r\n    flex: 1 1 auto;\r\n}*/\r\n\r\n\r\nmd-icon {\r\n    cursor: pointer;\r\n}\r\n\r\nmd-card > div.task-info {\r\n    display: -webkit-box;\r\n    display: -ms-flexbox;\r\n    display: flex;\r\n    -webkit-box-pack: start;\r\n        -ms-flex-pack: start;\r\n            justify-content: flex-start;\r\n}\r\n\r\nmd-card > div.task-info >  span {\r\n    width: 50%;\r\n}\r\n\r\nmd-card .task-title {\r\n    display: -webkit-box;\r\n    display: -ms-flexbox;\r\n    display: flex;\r\n    max-width: 65%;\r\n    display: flex;\r\n    -webkit-box-pack: start!important;\r\n        -ms-flex-pack: start!important;\r\n            justify-content: flex-start!important;\r\n}\r\n\r\n\r\nmd-card .tools-icons {\r\n    display: -webkit-box;\r\n    display: -ms-flexbox;\r\n    display: flex;\r\n    -webkit-box-pack: end !important;\r\n        -ms-flex-pack: end !important;\r\n            justify-content: flex-end !important;\r\n}\r\n", ""]);
 
 // exports
 
@@ -142,21 +142,21 @@ module.exports = "<md-toolbar color=\"primary\">\n  <span>\n    My App\n  </span
 /***/ 164:
 /***/ (function(module, exports) {
 
-module.exports = "<h3>Edit Task</h3>\n<form (ngSubmit)=\"onEditTask()\">\n  <md-input-container>\n    <input mdInput [(ngModel)]=\"task.title\" name=\"title\"/>\n  </md-input-container>\n</form>\n<button md-button (click)=\"onEditTaskCancelled()\">Cancel</button>\n"
+module.exports = "<h3>Edit Task</h3>\n<form (ngSubmit)=\"onEditTask()\">\n  <md-input-container>\n    <input mdInput [(ngModel)]=\"task.title\" name=\"title\"/>\n  </md-input-container>\n</form>\n<button md-button color=\"primary\" (click)=\"onEditTask()\">Save</button>\n<button md-button color=\"warn\" (click)=\"onEditTaskCancelled()\">Cancel</button>\n"
 
 /***/ }),
 
 /***/ 165:
 /***/ (function(module, exports) {
 
-module.exports = "<md-card>\n  <form (ngSubmit)=\"onAddTask(f)\" #f=\"ngForm\">\n    <md-input-container>\n      <input mdInput ngModel name=\"title\" placeholder=\"Task Title\">\n    </md-input-container>\n  </form>\n</md-card>"
+module.exports = "<md-card>\n  <form #f=\"ngForm\">\n    <md-input-container>\n      <input mdInput ngModel name=\"title\" placeholder=\"Task Title\">\n    </md-input-container>\n    <md-input-container>\n      <input mdInput ngModel [mdDatepicker]=\"myDatepicker\" name=\"date\" placeholder=\"To be completed on\">\n      <button mdSuffix [mdDatepickerToggle]=\"myDatepicker\"></button>\n    </md-input-container>\n    <md-datepicker #myDatepicker></md-datepicker>\n    <button md-button color=\"primary\" type=\"submit\" (click)=\"onAddTask(f)\">Create Task</button>\n  </form>\n</md-card>"
 
 /***/ }),
 
 /***/ 166:
 /***/ (function(module, exports) {
 
-module.exports = "<md-card>\r\n  <md-grid-list cols=\"2\" rowHeight=\"30px\">\r\n    <md-grid-tile class=\"md-grid-tile-task\">\r\n      <md-checkbox #checkbox (click)=\"onChecked(checkbox)\" [checked]=\"(!!task.completed)\">{{ task.title }}</md-checkbox>\r\n    </md-grid-tile>\r\n    <md-grid-tile class=\"md-grid-tile-buttons\">\r\n      <md-icon (click)=\"onShowEdit()\">edit</md-icon>\r\n      <md-icon (click)=\"onDeleteTask()\">delete</md-icon>\r\n    </md-grid-tile>\r\n  </md-grid-list>\r\n  <div *ngIf=\"!hideEdit\">\r\n    <hr>\r\n    <app-task-edit [task]=\"task\" (taskEdited)=\"onTaskEdited($event)\" (editCancelled)=\"onCancelEdit()\"></app-task-edit>\r\n  </div>\r\n</md-card>"
+module.exports = "<md-card flex>\r\n  <div class=\"task-info\">\r\n    <span class=\"input-title\">\r\n      <md-checkbox #checkbox (click)=\"onChecked(checkbox)\" [checked]=\"(!!task.completed)\">{{ task.title }}</md-checkbox>\r\n    </span>\r\n\r\n    <span class=\"tools-icons\">\r\n      <md-icon (click)=\"onShowEdit()\">edit</md-icon>\r\n      <md-icon (click)=\"onDeleteTask()\">delete</md-icon>\r\n    </span>\r\n  </div>\r\n\r\n  <div *ngIf=\"!hideEdit\" class=\"task-edit\">\r\n    <hr>\r\n    <app-task-edit [task]=\"task\" (taskEdited)=\"onTaskEdited($event)\" (editCancelled)=\"onCancelEdit()\"></app-task-edit>\r\n  </div>\r\n</md-card>"
 
 /***/ }),
 
@@ -175,7 +175,7 @@ module.exports = "<app-task-item *ngFor=\"let aTask of tasks; let i = index\" [i
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(36);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Subject__ = __webpack_require__(24);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Subject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_Subject__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map__ = __webpack_require__(72);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map__ = __webpack_require__(73);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TasksService; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -239,21 +239,22 @@ var _a;
 /***/ 219:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(85);
+module.exports = __webpack_require__(86);
 
 
 /***/ }),
 
-/***/ 59:
+/***/ 60:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Task; });
 var Task = (function () {
-    function Task(id, title, completed) {
+    function Task(id, title, completed, due) {
         this.id = id;
         this.title = title;
         this.completed = completed;
+        this.due = due;
     }
     return Task;
 }());
@@ -262,7 +263,7 @@ var Task = (function () {
 
 /***/ }),
 
-/***/ 84:
+/***/ 85:
 /***/ (function(module, exports) {
 
 function webpackEmptyContext(req) {
@@ -271,12 +272,12 @@ function webpackEmptyContext(req) {
 webpackEmptyContext.keys = function() { return []; };
 webpackEmptyContext.resolve = webpackEmptyContext;
 module.exports = webpackEmptyContext;
-webpackEmptyContext.id = 84;
+webpackEmptyContext.id = 85;
 
 
 /***/ }),
 
-/***/ 85:
+/***/ 86:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -337,7 +338,7 @@ AppComponent = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(58);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_http__ = __webpack_require__(36);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_platform_browser_animations__ = __webpack_require__(92);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_material__ = __webpack_require__(90);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_material__ = __webpack_require__(59);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__app_component__ = __webpack_require__(93);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__header_header_component__ = __webpack_require__(95);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__tasks_tasks_component__ = __webpack_require__(99);
@@ -393,7 +394,10 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_5__angular_material__["f" /* MdCheckboxModule */],
             __WEBPACK_IMPORTED_MODULE_5__angular_material__["g" /* MdInputModule */],
             __WEBPACK_IMPORTED_MODULE_2__angular_forms__["a" /* FormsModule */],
-            __WEBPACK_IMPORTED_MODULE_5__angular_material__["h" /* MdGridListModule */]
+            __WEBPACK_IMPORTED_MODULE_5__angular_material__["h" /* MdGridListModule */],
+            __WEBPACK_IMPORTED_MODULE_5__angular_material__["i" /* MdSnackBarModule */],
+            __WEBPACK_IMPORTED_MODULE_5__angular_material__["j" /* MdDatepickerModule */],
+            __WEBPACK_IMPORTED_MODULE_5__angular_material__["k" /* MdNativeDateModule */]
         ],
         providers: [__WEBPACK_IMPORTED_MODULE_11__tasks_tasks_service__["a" /* TasksService */]],
         bootstrap: [__WEBPACK_IMPORTED_MODULE_6__app_component__["a" /* AppComponent */]]
@@ -446,7 +450,7 @@ HeaderComponent = __decorate([
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__task_model__ = __webpack_require__(59);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__task_model__ = __webpack_require__(60);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__tasks_service__ = __webpack_require__(18);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TaskEditComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -528,7 +532,8 @@ var TaskInputComponent = (function () {
         this.task = {
             "id": null,
             "title": "",
-            "completed": false
+            "completed": false,
+            "due": new Date
         };
     }
     TaskInputComponent.prototype.ngOnInit = function () {
@@ -536,6 +541,8 @@ var TaskInputComponent = (function () {
     TaskInputComponent.prototype.onAddTask = function (form) {
         var task = this.task;
         task.title = form.value.title;
+        task.due = form.value.date;
+        console.log(form.value.date);
         this.tasksService.createTask(task);
         form.reset();
     };
@@ -560,7 +567,7 @@ var _a;
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__task_model__ = __webpack_require__(59);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__task_model__ = __webpack_require__(60);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__tasks_service__ = __webpack_require__(18);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TaskItemComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -635,7 +642,8 @@ var _a, _b;
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__tasks_service__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_material__ = __webpack_require__(59);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__tasks_service__ = __webpack_require__(18);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TasksComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -648,9 +656,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
+
 var TasksComponent = (function () {
-    function TasksComponent(tasksService) {
+    function TasksComponent(tasksService, snackbar) {
         this.tasksService = tasksService;
+        this.snackbar = snackbar;
     }
     TasksComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -661,11 +671,14 @@ var TasksComponent = (function () {
             _this.tasks.push(task);
         });
         this.tasksService.taskCompleted.subscribe(function (response) {
-            console.log('triggered taskCompleted subscription!');
             _this.tasks.splice(response.index, 1, response.task);
-        }, function (error) { console.log(error); }, function () { console.log('completed!'); });
+        }, function (error) { console.log(error); }, function () {
+            console.log('completed!');
+        });
         this.tasksService.taskDeleted.subscribe(function (index) {
+            var task = _this.tasks[index];
             _this.tasks.splice(index, 1);
+            _this.snackbar.open("task: " + task.title, "deleted");
         });
         this.tasksService.taskEdited.subscribe(function (response) {
             _this.tasks.splice(response.index, 1, response.task);
@@ -685,10 +698,10 @@ TasksComponent = __decorate([
         template: __webpack_require__(167),
         styles: [__webpack_require__(160)]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__tasks_service__["a" /* TasksService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__tasks_service__["a" /* TasksService */]) === "function" && _a || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__tasks_service__["a" /* TasksService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__tasks_service__["a" /* TasksService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_material__["l" /* MdSnackBar */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_material__["l" /* MdSnackBar */]) === "function" && _b || Object])
 ], TasksComponent);
 
-var _a;
+var _a, _b;
 //# sourceMappingURL=tasks.component.js.map
 
 /***/ })

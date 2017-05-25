@@ -43,6 +43,7 @@ class TaskController extends Controller
         $task = new Task();
         $task->title = $request->input('title');
         $task->completed = $request->input('completed') ? $request->input('completed') : false;
+//        $task->due = $request->input('due') ? $request->input('due') : null;
         $task->save();
 
         return response($task, 200);
