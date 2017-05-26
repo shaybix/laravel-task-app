@@ -43,7 +43,7 @@ exports = module.exports = __webpack_require__(10)(false);
 
 
 // module
-exports.push([module.i, ".filler {\r\n    -webkit-box-flex: 1;\r\n        -ms-flex: 1 1 auto;\r\n            flex: 1 1 auto;\r\n}", ""]);
+exports.push([module.i, ".filler {\r\n    -webkit-box-flex: 1;\r\n        -ms-flex: 1 1 auto;\r\n            flex: 1 1 auto;\r\n}\r\n\r\nmd-icon {\r\n    cursor: pointer;\r\n}", ""]);
 
 // exports
 
@@ -135,21 +135,21 @@ module.exports = "<app-header></app-header>\n<div class=\"application-content\">
 /***/ 163:
 /***/ (function(module, exports) {
 
-module.exports = "<md-toolbar color=\"primary\">\n  <span>\n    My App\n  </span>\n  <span class=\"filler\"></span>\n    <button md-button>\n      <md-icon>menu</md-icon>\n    </button>\n</md-toolbar>\n"
+module.exports = "<md-toolbar color=\"primary\">\n  <span>\n    My App\n  </span>\n  <span class=\"filler\"></span>\n  <md-icon>more_vert</md-icon>\n</md-toolbar>\n"
 
 /***/ }),
 
 /***/ 164:
 /***/ (function(module, exports) {
 
-module.exports = "<h3>Edit Task</h3>\n<form (ngSubmit)=\"onEditTask()\">\n  <md-input-container>\n    <input mdInput [(ngModel)]=\"task.title\" name=\"title\"/>\n  </md-input-container>\n</form>\n<button md-button color=\"primary\" (click)=\"onEditTask()\">Save</button>\n<button md-button color=\"warn\" (click)=\"onEditTaskCancelled()\">Cancel</button>\n"
+module.exports = "<h3>Edit Task</h3>\n<form (ngSubmit)=\"onEditTask()\">\n  <md-input-container>\n    <input mdInput [(ngModel)]=\"task.title\" name=\"title\"/>\n  </md-input-container>\n</form>\n<button md-raised-button color=\"primary\" (click)=\"onEditTask()\">Save</button>\n<button md-raised-button color=\"warn\" (click)=\"onEditTaskCancelled()\">Cancel</button>\n"
 
 /***/ }),
 
 /***/ 165:
 /***/ (function(module, exports) {
 
-module.exports = "<md-card>\n  <form #f=\"ngForm\">\n    <md-input-container>\n      <input mdInput ngModel name=\"title\" placeholder=\"Task Title\">\n    </md-input-container>\n    <md-input-container>\n      <input mdInput ngModel [mdDatepicker]=\"myDatepicker\" name=\"date\" placeholder=\"To be completed on\">\n      <button mdSuffix [mdDatepickerToggle]=\"myDatepicker\"></button>\n    </md-input-container>\n    <md-datepicker #myDatepicker></md-datepicker>\n    <button md-button color=\"primary\" type=\"submit\" (click)=\"onAddTask(f)\">Create Task</button>\n  </form>\n</md-card>"
+module.exports = "<md-card>\n  <form #f=\"ngForm\">\n    <md-input-container>\n      <input mdInput ngModel name=\"title\" placeholder=\"Task Title\">\n    </md-input-container>\n    <md-input-container>\n      <input mdInput ngModel [mdDatepicker]=\"myDatepicker\" name=\"date\" placeholder=\"To be completed on\">\n      <button mdSuffix [mdDatepickerToggle]=\"myDatepicker\"></button>\n    </md-input-container>\n    <md-datepicker #myDatepicker></md-datepicker>\n    <button md-raised-button color=\"primary\" type=\"submit\" (click)=\"onAddTask(f)\">Create Task</button>\n  </form>\n</md-card>"
 
 /***/ }),
 
@@ -207,18 +207,18 @@ var TasksService = (function () {
         var _this = this;
         return this._http.post('api/tasks', task)
             .map(function (response) { return response.json(); })
-            .subscribe(function (response) { _this.taskAdded.next(response); }, function (error) { console.log(error); }, function () { });
+            .subscribe(function (response) { _this.taskAdded.next(response); }, function (error) { }, function () { });
     };
     TasksService.prototype.deleteTask = function (index, task) {
         var _this = this;
         return this._http.delete("api/tasks/" + task.id)
             .map(function (response) { return response.json(); })
-            .subscribe(function (response) { _this.taskDeleted.next(index); }, function (error) { console.log(error); }, function () { });
+            .subscribe(function (response) { _this.taskDeleted.next(index); }, function (error) { }, function () { });
     };
     TasksService.prototype.saveTask = function (index, task) {
         var _this = this;
         return this._http.put("api/tasks/" + task.id, task)
-            .map(function (response) { return response.json(); }).subscribe(function (response) { _this.taskEdited.next({ "index": index, "task": response }); }, function (error) { console.log(error); }, function () { });
+            .map(function (response) { return response.json(); }).subscribe(function (response) { _this.taskEdited.next({ "index": index, "task": response }); }, function (error) { }, function () { });
     };
     TasksService.prototype.completeTask = function (task) {
         return this._http.put("api/tasks/" + task.id, task)
@@ -542,7 +542,6 @@ var TaskInputComponent = (function () {
         var task = this.task;
         task.title = form.value.title;
         task.due = form.value.date;
-        console.log(form.value.date);
         this.tasksService.createTask(task);
         form.reset();
     };
@@ -672,9 +671,7 @@ var TasksComponent = (function () {
         });
         this.tasksService.taskCompleted.subscribe(function (response) {
             _this.tasks.splice(response.index, 1, response.task);
-        }, function (error) { console.log(error); }, function () {
-            console.log('completed!');
-        });
+        }, function (error) { }, function () { });
         this.tasksService.taskDeleted.subscribe(function (index) {
             var task = _this.tasks[index];
             _this.tasks.splice(index, 1);
